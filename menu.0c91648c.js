@@ -117,83 +117,18 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
-var bundleURL = null;
-
-function getBundleURLCached() {
-  if (!bundleURL) {
-    bundleURL = getBundleURL();
-  }
-
-  return bundleURL;
-}
-
-function getBundleURL() {
-  // Attempt to find the URL of the current script and use that as the base URL
-  try {
-    throw new Error();
-  } catch (err) {
-    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
-
-    if (matches) {
-      return getBaseURL(matches[0]);
-    }
-  }
-
-  return '/';
-}
-
-function getBaseURL(url) {
-  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
-}
-
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-},{}],"../node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
-var bundle = require('./bundle-url');
-
-function updateLink(link) {
-  var newLink = link.cloneNode();
-
-  newLink.onload = function () {
-    link.remove();
-  };
-
-  newLink.href = link.href.split('?')[0] + '?' + Date.now();
-  link.parentNode.insertBefore(newLink, link.nextSibling);
-}
-
-var cssTimeout = null;
-
-function reloadCSS() {
-  if (cssTimeout) {
-    return;
-  }
-
-  cssTimeout = setTimeout(function () {
-    var links = document.querySelectorAll('link[rel="stylesheet"]');
-
-    for (var i = 0; i < links.length; i++) {
-      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
-        updateLink(links[i]);
-      }
-    }
-
-    cssTimeout = null;
-  }, 50);
-}
-
-module.exports = reloadCSS;
-},{"./bundle-url":"../node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"sass/main.scss":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"./..\\images\\hero\\mobile\\group-img-min.png":[["group-img-min.793c0feb.png","images/hero/mobile/group-img-min.png"],"images/hero/mobile/group-img-min.png"],"./..\\images\\hero\\mobile\\group-img@2x-min.png":[["group-img@2x-min.3968c158.png","images/hero/mobile/group-img@2x-min.png"],"images/hero/mobile/group-img@2x-min.png"],"./..\\images\\hero\\tablet\\girl-min.png":[["girl-min.59516356.png","images/hero/tablet/girl-min.png"],"images/hero/tablet/girl-min.png"],"./..\\images\\hero\\tablet\\group-img-min.png":[["group-img-min.42926f98.png","images/hero/tablet/group-img-min.png"],"images/hero/tablet/group-img-min.png"],"./..\\images\\hero\\tablet\\girl@2x-min.png":[["girl@2x-min.8a8c1b18.png","images/hero/tablet/girl@2x-min.png"],"images/hero/tablet/girl@2x-min.png"],"./..\\images\\hero\\tablet\\group-img@2x-min.png":[["group-img@2x-min.c406e517.png","images/hero/tablet/group-img@2x-min.png"],"images/hero/tablet/group-img@2x-min.png"],"./..\\images\\hero\\desktop\\girl-min.png":[["girl-min.1c397679.png","images/hero/desktop/girl-min.png"],"images/hero/desktop/girl-min.png"],"./..\\images\\hero\\desktop\\group-img-min.png":[["group-img-min.236bf3aa.png","images/hero/desktop/group-img-min.png"],"images/hero/desktop/group-img-min.png"],"./..\\images\\hero\\desktop\\girl@2x-min.png":[["girl@2x-min.7f92ab56.png","images/hero/desktop/girl@2x-min.png"],"images/hero/desktop/girl@2x-min.png"],"./..\\images\\hero\\desktop\\group-img@2x-min.png":[["group-img@2x-min.9b484de0.png","images/hero/desktop/group-img@2x-min.png"],"images/hero/desktop/group-img@2x-min.png"],"./..\\images\\hero\\tablet\\milk-min.png":[["milk-min.d65cc491.png","images/hero/tablet/milk-min.png"],"images/hero/tablet/milk-min.png"],"./..\\images\\hero\\tablet\\milk@2x-min.png":[["milk@2x-min.6153621a.png","images/hero/tablet/milk@2x-min.png"],"images/hero/tablet/milk@2x-min.png"],"./..\\images\\hero\\desktop\\milk-min.png":[["milk-min.22184567.png","images/hero/desktop/milk-min.png"],"images/hero/desktop/milk-min.png"],"./..\\images\\hero\\desktop\\milk@2x-min.png":[["milk@2x-min.05e2c605.png","images/hero/desktop/milk@2x-min.png"],"images/hero/desktop/milk@2x-min.png"],"./..\\images\\production\\mobile\\sectionbg-min.png":[["sectionbg-min.8cbbf426.png","images/production/mobile/sectionbg-min.png"],"images/production/mobile/sectionbg-min.png"],"./..\\images\\production\\mobile\\sectionbg-min@2x.png":[["sectionbg-min@2x.391dfdef.png","images/production/mobile/sectionbg-min@2x.png"],"images/production/mobile/sectionbg-min@2x.png"],"./..\\images\\production\\desktop\\section-bg-min.png":[["section-bg-min.22e5e00e.png","images/production/desktop/section-bg-min.png"],"images/production/desktop/section-bg-min.png"],"./..\\images\\production\\desktop\\section-bg@2x-min.png":[["section-bg@2x-min.a55a9de0.png","images/production/desktop/section-bg@2x-min.png"],"images/production/desktop/section-bg@2x-min.png"],"./..\\images\\reviews\\mobile\\collage-min.png":[["collage-min.b5d306b1.png","images/reviews/mobile/collage-min.png"],"images/reviews/mobile/collage-min.png"],"./..\\images\\reviews\\mobile\\collage@2x-min.png":[["collage@2x-min.577190de.png","images/reviews/mobile/collage@2x-min.png"],"images/reviews/mobile/collage@2x-min.png"],"./..\\images\\reviews\\tablet\\collage-min.png":[["collage-min.eef90682.png","images/reviews/tablet/collage-min.png"],"images/reviews/tablet/collage-min.png"],"./..\\images\\reviews\\tablet\\collage@2x-min.png":[["collage@2x-min.f7f3c47e.png","images/reviews/tablet/collage@2x-min.png"],"images/reviews/tablet/collage@2x-min.png"],"./..\\images\\reviews\\desktop\\collage-min.png":[["collage-min.d785357a.png","images/reviews/desktop/collage-min.png"],"images/reviews/desktop/collage-min.png"],"./..\\images\\reviews\\desktop\\collage@2x-min.png":[["collage@2x-min.392e3f82.png","images/reviews/desktop/collage@2x-min.png"],"images/reviews/desktop/collage@2x-min.png"],"./..\\images\\location\\desktop\\section-bg@2x-min.png":[["section-bg@2x-min.e94ba137.png","images/location/desktop/section-bg@2x-min.png"],"images/location/desktop/section-bg@2x-min.png"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"index.js":[function(require,module,exports) {
-"use strict";
-
-require("./sass/main.scss");
-},{"./sass/main.scss":"sass/main.scss"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+})({"js/menu.js":[function(require,module,exports) {
+(function () {
+  var menuBtnRef = document.querySelector("[data-menu-button]");
+  var mobileMenuRef = document.querySelector("[data-menu]");
+  menuBtnRef.addEventListener("click", function () {
+    var expanded = menuBtnRef.getAttribute("aria-expanded") === "true" || false;
+    menuBtnRef.classList.toggle("is-open");
+    menuBtnRef.setAttribute("aria-expanded", !expanded);
+    mobileMenuRef.classList.toggle("is-open");
+  });
+})();
+},{}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -397,5 +332,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], null)
-//# sourceMappingURL=/src.e31bb0bc.js.map
+},{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/menu.js"], null)
+//# sourceMappingURL=/menu.0c91648c.js.map
