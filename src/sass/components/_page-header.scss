@@ -14,6 +14,11 @@
     }
   }
 
+  .page-logo {
+    animation: heartBeat;
+    animation-duration: 2s;
+  }
+
   &-btn-container {
     display: flex;
   }
@@ -131,7 +136,7 @@
     }
   }
 
-  &.is-open .mobile-menu{
+  &.is-open .mobile-menu {
     width: 14px;
     height: 14px;
   }
@@ -149,7 +154,7 @@
   z-index: 10;
   background-color: $burger-menu-color;
   transition: opacity $timing-function;
- 
+
   @media screen and (min-width: $tablet) {
     width: 33vw;
     height: 100vw;
@@ -163,12 +168,12 @@
 
   &.is-open {
     visibility: visible;
-    opacity:1;
+    opacity: 1;
 
     @media screen and (min-width: $tablet) {
       transform: translateY(0);
     }
-    
+
     @media screen and (min-width: $desktop) {
       display: none;
     }
@@ -202,7 +207,6 @@
 
 .menu-nav-item {
   width: 100%;
-  padding: 12px 0;
   border-top: 1px solid $burger-border-color;
   border-bottom: 1px solid $burger-border-color;
 
@@ -213,7 +217,8 @@
 }
 
 .menu-nav-link {
-  padding-left: 20px;
+  display: block;
+  padding: 12px 0 12px 20px;
   font-family: $main-font;
   font-weight: 700;
   font-size: 14px;
